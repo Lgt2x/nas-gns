@@ -1,0 +1,8 @@
+certifi==2021.10.8
+charset-normalizer==2.0.8
+gns3fy @ git+https://github.com/davidban77/gns3fy@583c9aa0a64bac9cb3fdd9631a3af151496cb56e
+idna==3.3
+pydantic==1.8.2
+requests==2.26.0
+typing_extensions==4.0.0
+urllib3==1.26.7

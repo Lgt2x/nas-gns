@@ -1,0 +1,54 @@
+{
+  "nodes" : [
+    {
+      "name": "R1",
+      "type": "c7200"
+    },
+    {
+      "name": "R2",
+      "type": "c7200"
+    },
+    {
+      "name": "R3",
+      "type": "c7200"
+    },
+    {
+      "name": "R4",
+      "type": "c7200"
+    },
+    {
+      "name": "R5",
+      "type": "c7200"
+    }
+  ],
+  "links" : [
+    {
+      "node1": "R1",
+      "node2": "R2",
+      "interface1": "g1/0",
+      "interface2": "g1/0",
+      "subnet": "10.10.1.0/24"
+    },
+    {
+      "node1": "R1",
+      "node2": "R4",
+      "interface1": "g2/0",
+      "interface2": "g2/0",
+      "subnet": "10.10.4.0/24"
+    },
+    {
+      "node1": "R1",
+      "node2": "R5",
+      "interface1": "g3/0",
+      "interface2": "g3/0",
+      "subnet": "10.10.51.0/24"
+    },
+    {
+      "node1": "R1",
+      "node2": "R4",
+      "interface1": "g2/0",
+      "interface2": "g2/0",
+      "subnet": "10.10.4.0/24"
+    }
+  ]
+}
