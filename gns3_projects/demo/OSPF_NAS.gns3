@@ -308,32 +308,6 @@
             },
             {
                 "filters": {},
-                "link_id": "a6cdf139-8b81-4f2e-876c-b291b45fa432",
-                "link_style": {},
-                "nodes": [
-                    {
-                        "adapter_number": 0,
-                        "label": {
-                            "style": "font-family: TypeWriter;font-size: 10.0;font-weight: bold;fill: #000000;fill-opacity: 1.0;",
-                            "text": "0/1"
-                        },
-                        "node_id": "1159ec8d-3d65-4b66-a2d1-2ddb3b2c9e62",
-                        "port_number": 1
-                    },
-                    {
-                        "adapter_number": 0,
-                        "label": {
-                            "style": "font-family: TypeWriter;font-size: 10.0;font-weight: bold;fill: #000000;fill-opacity: 1.0;",
-                            "text": "0/0"
-                        },
-                        "node_id": "b71d56a5-8759-47cd-8543-d089336c7aab",
-                        "port_number": 0
-                    }
-                ],
-                "suspend": false
-            },
-            {
-                "filters": {},
                 "link_id": "6e247e8e-700c-4987-bcd2-0eb0a35c7a96",
                 "link_style": {},
                 "nodes": [
@@ -520,6 +494,38 @@
                         },
                         "node_id": "1e8d51c9-5a1f-449a-a5fb-13ff64d80ed9",
                         "port_number": 0
+                    }
+                ],
+                "suspend": false
+            },
+            {
+                "filters": {},
+                "link_id": "bd393cd6-c822-4602-8c9a-11852d51152d",
+                "link_style": {},
+                "nodes": [
+                    {
+                        "adapter_number": 0,
+                        "label": {
+                            "rotation": 0,
+                            "style": "font-family: TypeWriter;font-size: 10.0;font-weight: bold;fill: #000000;fill-opacity: 1.0;",
+                            "text": "e0",
+                            "x": 72,
+                            "y": 29
+                        },
+                        "node_id": "683dec38-cb31-4744-b11c-daae13509e4f",
+                        "port_number": 0
+                    },
+                    {
+                        "adapter_number": 0,
+                        "label": {
+                            "rotation": 0,
+                            "style": "font-family: TypeWriter;font-size: 10.0;font-weight: bold;fill: #000000;fill-opacity: 1.0;",
+                            "text": "e1",
+                            "x": -4,
+                            "y": 16
+                        },
+                        "node_id": "1159ec8d-3d65-4b66-a2d1-2ddb3b2c9e62",
+                        "port_number": 1
                     }
                 ],
                 "suspend": false
@@ -1114,8 +1120,8 @@
                 "symbol": ":/symbols/vpcs_guest.svg",
                 "template_id": "19021f99-e36f-394d-b4a1-8aaa902ab9cc",
                 "width": 65,
-                "x": 302,
-                "y": -34,
+                "x": 391,
+                "y": -86,
                 "z": 1
             },
             {
@@ -1200,7 +1206,7 @@
             },
             {
                 "compute_id": "local",
-                "console": 5012,
+                "console": 5010,
                 "console_auto_start": false,
                 "console_type": "telnet",
                 "custom_adapters": [],
@@ -1215,7 +1221,7 @@
                 },
                 "locked": false,
                 "name": "PC2",
-                "node_id": "b71d56a5-8759-47cd-8543-d089336c7aab",
+                "node_id": "683dec38-cb31-4744-b11c-daae13509e4f",
                 "node_type": "vpcs",
                 "port_name_format": "Ethernet{0}",
                 "port_segment_size": 0,
@@ -1223,8 +1229,8 @@
                 "symbol": ":/symbols/vpcs_guest.svg",
                 "template_id": "19021f99-e36f-394d-b4a1-8aaa902ab9cc",
                 "width": 65,
-                "x": -790,
-                "y": -38,
+                "x": -901,
+                "y": -106,
                 "z": 1
             }
         ]
