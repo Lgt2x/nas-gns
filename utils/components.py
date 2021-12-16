@@ -47,7 +47,7 @@ class GNode():
         for link in links:
             info = [info for info in link.nodes if info['node_id'] == self.node.node_id][0]
             busy_ports.append(
-                [n["short_name"] for n in self.node.ports if n["port_number"] == info["port_number"]][0])
+                [n["short_name"] for n in self.node.ports if n["adapter_number"] == info["adapter_number"]][0])
 
         return list(set(all_ports) - set(busy_ports))[0]  # Get the first port not busy
 
