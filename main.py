@@ -174,9 +174,14 @@ class GNS_project:
     #     AS = config["AS"]
     #     for router in config["routers"]:
 
+    def config_all(self, file):
+        with open('file', 'r') as config_file:
+            config = json.load(config_file)
+
 
 if __name__ == "__main__":
     project = GNS_project("http://localhost:3080", "autoconf")
     # project.create_backbone("archi/backbone.json")
     project.create_backbone_auto(1)
+    project.config_all('archi/backbone.json')
     project.create_client("TurneDeDavid", pc=4)

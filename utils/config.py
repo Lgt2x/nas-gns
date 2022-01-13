@@ -69,7 +69,7 @@ class Config():
         # Internal interfaces
         if type == "client":
             file.write(f"interface GigabitEthernet{port}/0\n"
-                       f" ip address 10.10.10.10.10{rid}.{rid} 255.255.255.0\n")
+                       f" ip address 10.10.10{rid}.{rid} 255.255.255.0\n")
             file.write(" negotiation auto\n\n")
             port += 1
 
