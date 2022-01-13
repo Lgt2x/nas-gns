@@ -1,3 +1,5 @@
+from dataclasses import dataclass
+
 import gns3fy
 
 
@@ -69,3 +71,12 @@ class GNode():
         links2 = gnode2.get_node_links()
 
         return list(set(links1) & set(links2))
+
+
+@dataclass
+class Router:
+    rid: int
+    type: str
+    AS: int
+    neighbors: ['Router'] # Inside AS neighbors
+    exterior: ['Router']  # Different AS neighbors

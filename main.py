@@ -43,18 +43,20 @@ class GNS_project:
             node.delete()
 
         # Create nodes
-        nodes = config["nodes"]
+        nodes = config["routers"]
         for node in nodes:
-            self.create_node(node["type"], node["name"])
-            print(f"Created node {node['name']} of type {node['type']}")
+            self.create_node("c7200", f"R{node['rid']}")
+            print(f"Created node {node['rid']}")
+
+            # Write configuration to file
 
         self.project.get_nodes()  # Update node list
 
         # Create links
         links = config["links"]
         for link in links:
-            self.create_link(link["node1"], link["node2"])
-            print(f"Created link between {link['node1']} and {link['node1']}")
+            self.create_link(link["rid1"], link["rid2"])
+            print(f"Created link between R{link['rid1']} and R{link['rid2']}")
 
         config_file.close()
 
@@ -165,9 +167,16 @@ class GNS_project:
         node.create()
         self.project.get_nodes()
 
+    # def load_router(self, file):
+    #     config_file = open(file)
+    #     config = json.load(config_file)
+    #
+    #     AS = config["AS"]
+    #     for router in config["routers"]:
+
 
 if __name__ == "__main__":
     project = GNS_project("http://localhost:3080", "autoconf")
-    project.create_backbone("archi/backbone.json")
-    # project.create_backbone_auto(1)
+    # project.create_backbone("archi/backbone.json")
+    project.create_backbone_auto(1)
     project.create_client("TurneDeDavid", pc=4)

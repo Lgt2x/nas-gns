@@ -1,46 +1,59 @@
 {
-  "nodes" : [
+  "AS": 2,
+  "routers" : [
     {
-      "name": "R1",
-      "type": "c7200",
-      "edge": true
+      "rid": 1,
+      "type": "edge"
     },
     {
-      "name": "R2",
-      "type": "c7200",
-      "edge": true
+      "rid": 2,
+      "type": "edge"
     },
     {
-      "name": "R3",
-      "type": "c7200",
-      "edge": true
+      "rid": 3,
+      "type": "edge"
     },
     {
-      "name": "R4",
-      "type": "c7200",
-      "edge": true
+      "rid": 4,
+      "type": "edge"
     },
     {
-      "name": "R5",
-      "type": "c7200",
-      "edge": false
+      "rid": 5,
+      "type": "core"
     }
   ],
   "links" : [
     {
-      "node1": "R1",
-      "node2": "R2",
-      "subnet": "10.10.1.0/24",
+      "rid1": 1,
+      "rid2": 2
     },
     {
-      "node1": "R1",
-      "node2": "R4",
-      "subnet": "10.10.4.0/24"
+      "rid1": 1,
+      "rid2": 3
     },
     {
-      "node1": "R2",
-      "node2": "R5",
-      "subnet": "10.10.51.0/24"
+      "rid1": 1,
+      "rid2": 5
+    },
+    {
+      "rid1": 2,
+      "rid2": 4
+    },
+    {
+      "rid1": 2,
+      "rid2": 5
+    },
+    {
+      "rid1": 3,
+      "rid2": 4
+    },
+    {
+      "rid1": 3,
+      "rid2": 5
+    },
+    {
+      "rid1": 4,
+      "rid2": 5
     }
   ]
 }

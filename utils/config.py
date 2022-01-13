@@ -66,6 +66,13 @@ class Config():
                 file.write(" negotiation auto\n\n")
                 port += 1
 
+        # Internal interfaces
+        if type == "client":
+            file.write(f"interface GigabitEthernet{port}/0\n"
+                       f" ip address 10.10.10.10.10{rid}.{rid} 255.255.255.0\n")
+            file.write(" negotiation auto\n\n")
+            port += 1
+
         if type == "edge" or type == "core":
             file.write("router ospf 1\n"
                        f" router-id {rid}.{rid}.{rid}.{rid}\n\n")
@@ -89,6 +96,10 @@ class Config():
                     f"neighbor 10.10.{min(exteriors[i], rid)}{max(exteriors[i], rid)}.{exteriors[i]} remote-as {exteriors_as[i]}\n")
 
             file.write("\naddress-family ipv4\n")
+
+            if type == "client":
+                file.write(f"network 10.10.10{rid}.0 mask 255.255.255.0\n")
+
             for neighbor in neighbors:
                 file.write(f"neighbor {neighbor}.{neighbor}.{neighbor}.{neighbor} activate\n")
             for exterior in exteriors:
