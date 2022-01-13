@@ -168,6 +168,6 @@ class GNS_project:
 
 if __name__ == "__main__":
     project = GNS_project("http://localhost:3080", "autoconf")
-    # project.create_backbone("archi/backbone.json")
-    project.create_backbone_auto(1)
+    project.create_backbone("archi/backbone.json")
+    # project.create_backbone_auto(1)
     project.create_client("TurneDeDavid", pc=4)

@@ -1,0 +1,21 @@
+{
+  "type": "peering",
+  "router": "RC1",
+  "PC_Number": "3",
+  "peers": [
+    {
+      "router": "R1",
+      "interface": "10.10.16.6"
+    },
+    {
+      "router": "R2",
+      "interface": "10.10.26.6"
+    }
+  ],
+  "advertised": [
+    {
+      "subnet": "10.10.102.0",
+      "mask": "255.255.255.0"
+    }
+  ]
+}

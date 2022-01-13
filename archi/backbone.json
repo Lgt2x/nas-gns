@@ -2,30 +2,35 @@
   "nodes" : [
     {
       "name": "R1",
-      "type": "c7200"
+      "type": "c7200",
+      "edge": true
     },
     {
       "name": "R2",
-      "type": "c7200"
+      "type": "c7200",
+      "edge": true
     },
     {
       "name": "R3",
-      "type": "c7200"
+      "type": "c7200",
+      "edge": true
     },
     {
       "name": "R4",
-      "type": "c7200"
+      "type": "c7200",
+      "edge": true
     },
     {
       "name": "R5",
-      "type": "c7200"
+      "type": "c7200",
+      "edge": false
     }
   ],
   "links" : [
     {
       "node1": "R1",
       "node2": "R2",
-      "subnet": "10.10.1.0/24"
+      "subnet": "10.10.1.0/24",
     },
     {
       "node1": "R1",
