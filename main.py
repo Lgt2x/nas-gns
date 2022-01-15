@@ -2,13 +2,16 @@ import gns3fy
 import sys
 import json
 
-from utils.components import GNode
+from utils.components import GNode, Router
+from utils.config import Config
 
 
 class GNS_project:
     def __init__(self, url, project):
         self.gns_url = url
         self.project_name = project
+        self.backbone_routers = []
+        self.client_routers = []
 
         try:
             self.server = gns3fy.Gns3Connector(url=url)
@@ -110,8 +113,9 @@ class GNS_project:
         print("---- Backbone setup completed\n")
 
     def create_client(self, name, router=True, pc=2, switch=True, AS=False, redundancy=False):
-        print(f"Creating client `{name}` {'with' if router else 'without'} router, {pc} PC, {'with' if switch else 'without'} switch, "
-              f"{'with' if AS else 'without'} its own AS, {'with' if redundancy else 'without'} redundancy")
+        print(
+            f"Creating client `{name}` {'with' if router else 'without'} router, {pc} PC, {'with' if switch else 'without'} switch, "
+            f"{'with' if AS else 'without'} its own AS, {'with' if redundancy else 'without'} redundancy")
 
         # Select our edge router
         edge = GNode(self.project, "RE1")
@@ -133,7 +137,8 @@ class GNS_project:
         for i in range(pc):
             self.create_node("VPCS", f"{name}PC{i}")
             # self.create_link(f"{name}Switch", f"{name}PC{i}")
-            GNode(self.project, f"{name}PC{i}").node.update(x=edge.node.x - 450, y=edge.node.y+i*80-(pc//2)*80)
+            GNode(self.project, f"{name}PC{i}").node.update(x=edge.node.x - 450,
+                                                            y=edge.node.y + i * 80 - (pc // 2) * 80)
 
     def create_link(self, node1, node2):
         """
@@ -167,21 +172,57 @@ class GNS_project:
         node.create()
         self.project.get_nodes()
 
-    # def load_router(self, file):
-    #     config_file = open(file)
-    #     config = json.load(config_file)
-    #
-    #     AS = config["AS"]
-    #     for router in config["routers"]:
-
-    def config_all(self, file):
-        with open('file', 'r') as config_file:
+    def load_config(self, file, type):
+        with open(file, 'r') as config_file:
             config = json.load(config_file)
+
+            if type == "backbone":
+                for router in config["routers"]:
+                    neigh = []
+                    for link in config["links"]:
+                        if link["rid1"] == router["rid"]:
+                            neigh.append(link["rid2"])
+                        elif link["rid2"] == router["rid"]:
+                            neigh.append(link["rid1"])
+
+                    self.backbone_routers.append(Router(AS=config["AS"],
+                                                        rid=router["rid"],
+                                                        type=router["type"],
+                                                        neighbors=neigh,
+                                                        exteriors=[],
+                                                        peers=[]))
+            elif type == "client":
+                self.client_routers.append(Router(AS=config["AS"],
+                                                  rid=config["rid"],
+                                                  type="client",
+                                                  neighbors=[],
+                                                  exteriors=[self.get_router(r) for r in config["peers"]],
+                                                  peers=config["peers"]))
+                for router in self.backbone_routers:  # Update backbone exterior relatioins
+                    router.exteriors += [r for r in self.client_routers if router.rid in r.peers]
+            else:
+                raise TypeError
+
+    def config_all(self) -> None:
+        self.project.get_nodes()
+        for router in self.backbone_routers + self.client_routers:
+            Config.generate_config(router, self.get_config_path(router.rid))
+
+    def get_router(self, rid):
+        for r in self.backbone_routers + self.client_routers:
+            if r.rid == rid:
+                return r
+
+    def get_config_path(self, node):
+        rid = self.project.get_node(f'R{node}').node_id
+        return f"{self.project.path}/project-files/dynamips/{rid}/configs/i{node}_startup-config.cfg"
 
 
 if __name__ == "__main__":
-    project = GNS_project("http://localhost:3080", "autoconf")
+    project = GNS_project("http://localhost:3080", "autoconf2")
     # project.create_backbone("archi/backbone.json")
-    project.create_backbone_auto(1)
-    project.config_all('archi/backbone.json')
-    project.create_client("TurneDeDavid", pc=4)
+    # project.create_backbone_auto(1)
+    project.load_config('archi/backbone.json', 'backbone')
+    project.load_config('archi/client1.json', 'client')
+    project.load_config('archi/client2.json', 'client')
+    project.config_all()

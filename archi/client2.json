@@ -1,0 +1,6 @@
+{
+  "type": "peering",
+  "rid": 7,
+  "peers": [4],
+  "AS": 2
+}

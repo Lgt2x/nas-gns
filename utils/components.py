@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from typing import Optional
 
 import gns3fy
 
@@ -78,5 +79,6 @@ class Router:
     rid: int
     type: str
     AS: int
-    neighbors: ['Router'] # Inside AS neighbors
-    exterior: ['Router']  # Different AS neighbors
+    neighbors: [int]  # Inside AS neighbors
+    exteriors: ['Router']  # Different AS neighbors
+    peers: [int]

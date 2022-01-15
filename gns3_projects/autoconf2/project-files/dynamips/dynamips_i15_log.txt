@@ -1,0 +1,61 @@
+Jan 15 17:15:09.763 HYPERVISOR: Release 0.2.21-x86/Linux (tag 2019071212)
+Jan 15 17:15:09.764 HYPERVISOR: Started on TCP port = 35123.
+Jan 15 17:15:09.771 HYPERVISOR: exec_cmd: hypervisor version 
+Jan 15 17:15:09.771 HYPERVISOR: exec_cmd: hypervisor working_dir /home/louis/Documents/JetBrains/PycharmProjects/nas-gns/gns3_projects/autoconf2/project-files/dynamips 
+Jan 15 17:15:09.771 GENERAL: working_dir=/home/louis/Documents/JetBrains/PycharmProjects/nas-gns/gns3_projects/autoconf2/project-files/dynamips
+Jan 15 17:15:09.771 HYPERVISOR: exec_cmd: hypervisor working_dir /home/louis/Documents/JetBrains/PycharmProjects/nas-gns/gns3_projects/autoconf2/project-files/dynamips/fae0b0f4-5102-4266-9689-a75cbbe9f1fd 
+Jan 15 17:15:09.771 GENERAL: working_dir=/home/louis/Documents/JetBrains/PycharmProjects/nas-gns/gns3_projects/autoconf2/project-files/dynamips/fae0b0f4-5102-4266-9689-a75cbbe9f1fd
+Jan 15 17:15:09.771 HYPERVISOR: exec_cmd: vm create R6 6 c7200 
+Jan 15 17:15:09.771 VM: VM R6 created.
+Jan 15 17:15:09.772 HYPERVISOR: exec_cmd: vm set_con_tcp_port R6 5005 
+Jan 15 17:15:09.772 HYPERVISOR: exec_cmd: c7200 get_mac_addr R6 
+Jan 15 17:15:09.772 HYPERVISOR: exec_cmd: vm get_status R6 
+Jan 15 17:15:09.772 HYPERVISOR: exec_cmd: vm slot_add_binding R6 0 0 C7200-IO-FE 
+Jan 15 17:15:09.772 HYPERVISOR: exec_cmd: vm set_ios R6 /home/louis/GNS3/images/IOS/c7200-advipservicesk9-mz.152-4.S5.image 
+Jan 15 17:15:09.773 HYPERVISOR: exec_cmd: vm get_status R6 
+Jan 15 17:15:09.773 HYPERVISOR: exec_cmd: vm set_idle_pc R6 0x6318687c 
+Jan 15 17:15:09.773 HYPERVISOR: exec_cmd: vm set_ram R6 512 
+Jan 15 17:15:09.773 HYPERVISOR: exec_cmd: vm set_nvram R6 512 
+Jan 15 17:15:09.773 HYPERVISOR: exec_cmd: vm set_disk0 R6 0 
+Jan 15 17:15:09.773 HYPERVISOR: exec_cmd: vm get_status R6 
+Jan 15 17:15:09.774 HYPERVISOR: exec_cmd: vm slot_add_binding R6 1 0 PA-GE 
+Jan 15 17:15:09.774 HYPERVISOR: exec_cmd: vm get_status R6 
+Jan 15 17:15:09.774 HYPERVISOR: exec_cmd: vm slot_add_binding R6 2 0 PA-GE 
+Jan 15 17:15:09.774 HYPERVISOR: exec_cmd: vm get_status R6 
+Jan 15 17:15:09.774 HYPERVISOR: exec_cmd: vm slot_add_binding R6 3 0 PA-GE 
+Jan 15 17:15:09.775 HYPERVISOR: exec_cmd: vm get_status R6 
+Jan 15 17:15:09.775 HYPERVISOR: exec_cmd: vm slot_add_binding R6 4 0 PA-GE 
+Jan 15 17:15:09.775 HYPERVISOR: exec_cmd: vm get_status R6 
+Jan 15 17:15:09.775 HYPERVISOR: exec_cmd: vm slot_add_binding R6 5 0 PA-GE 
+Jan 15 17:15:09.828 HYPERVISOR: exec_cmd: vm set_ios R6 /home/louis/GNS3/images/IOS/c7200-advipservicesk9-mz.152-4.S5.image 
+Jan 15 17:15:20.826 HYPERVISOR: exec_cmd: vm set_ios R6 /home/louis/GNS3/images/IOS/c7200-advipservicesk9-mz.152-4.S5.image 
+Jan 15 17:15:53.605 HYPERVISOR: exec_cmd: nio create_udp udp-78f3a156-708d-4854-998e-6d5007859699 10022 127.0.0.1 10023 
+Jan 15 17:15:53.818 HYPERVISOR: exec_cmd: vm slot_add_nio_binding R6 1 0 udp-78f3a156-708d-4854-998e-6d5007859699 
+Jan 15 17:15:53.818 HYPERVISOR: exec_cmd: vm get_status R6 
+Jan 15 17:15:59.509 HYPERVISOR: exec_cmd: nio create_udp udp-eb8bb0b8-b913-464e-9cee-6b74e545c4c0 10026 127.0.0.1 10027 
+Jan 15 17:15:59.510 HYPERVISOR: exec_cmd: vm slot_add_nio_binding R6 2 0 udp-eb8bb0b8-b913-464e-9cee-6b74e545c4c0 
+Jan 15 17:15:59.511 HYPERVISOR: exec_cmd: vm get_status R6 
+Jan 15 17:16:16.326 HYPERVISOR: exec_cmd: vm get_status R6 
+Jan 15 17:16:16.327 HYPERVISOR: exec_cmd: vm slot_remove_nio_binding R6 2 0 
+Jan 15 17:16:16.328 HYPERVISOR: exec_cmd: nio delete udp-eb8bb0b8-b913-464e-9cee-6b74e545c4c0 
+Jan 15 17:16:21.893 HYPERVISOR: exec_cmd: nio create_udp udp-e4fbba3a-1b1d-4681-8441-1da6bebe9637 10026 127.0.0.1 10027 
+Jan 15 17:16:21.894 HYPERVISOR: exec_cmd: vm slot_add_nio_binding R6 2 0 udp-e4fbba3a-1b1d-4681-8441-1da6bebe9637 
+Jan 15 17:16:21.894 HYPERVISOR: exec_cmd: vm get_status R6 
+Jan 15 17:16:25.516 HYPERVISOR: exec_cmd: nio create_udp udp-1406494f-4e6a-4f7d-8c07-e2f7f215d77d 10032 127.0.0.1 10033 
+Jan 15 17:16:25.517 HYPERVISOR: exec_cmd: vm slot_add_nio_binding R6 3 0 udp-1406494f-4e6a-4f7d-8c07-e2f7f215d77d 
+Jan 15 17:16:25.517 HYPERVISOR: exec_cmd: vm get_status R6 
+Jan 15 17:17:02.480 HYPERVISOR: exec_cmd: vm get_status R6 
+Jan 15 17:17:02.480 HYPERVISOR: exec_cmd: vm set_config R6 configs/i6_startup-config.cfg 
+Jan 15 17:17:02.480 HYPERVISOR: exec_cmd: vm start R6 
+Jan 15 17:17:18.493 HYPERVISOR: exec_cmd: vm get_status R6 
+Jan 15 17:17:18.494 HYPERVISOR: exec_cmd: vm stop R6 
+Jan 15 17:17:18.641 VM: VM R6 shutdown.
+Jan 15 17:17:18.642 HYPERVISOR: exec_cmd: vm extract_config R6 
+Jan 15 17:18:06.912 HYPERVISOR: exec_cmd: vm get_status R6 
+Jan 15 17:18:06.912 HYPERVISOR: exec_cmd: vm set_config R6 configs/i6_startup-config.cfg 
+Jan 15 17:18:06.913 HYPERVISOR: exec_cmd: vm start R6 
+Jan 15 17:18:37.222 HYPERVISOR: exec_cmd: vm extract_config R6 
+Jan 15 17:20:46.261 HYPERVISOR: exec_cmd: vm get_status R6 
+Jan 15 17:20:46.261 HYPERVISOR: exec_cmd: vm stop R6 
+Jan 15 17:20:46.421 VM: VM R6 shutdown.
+Jan 15 17:20:46.422 HYPERVISOR: exec_cmd: vm extract_config R6 
