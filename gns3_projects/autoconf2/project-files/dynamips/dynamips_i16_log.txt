@@ -50,3 +50,6 @@ Jan 15 17:20:46.382 HYPERVISOR: exec_cmd: vm get_status R7
 Jan 15 17:20:46.385 HYPERVISOR: exec_cmd: vm stop R7 
 Jan 15 17:20:46.526 VM: VM R7 shutdown.
 Jan 15 17:20:46.527 HYPERVISOR: exec_cmd: vm extract_config R7 
+Jan 15 17:22:19.035 HYPERVISOR: exec_cmd: vm get_status R7 
+Jan 15 17:22:19.036 HYPERVISOR: exec_cmd: vm set_config R7 configs/i7_startup-config.cfg 
+Jan 15 17:22:19.036 HYPERVISOR: exec_cmd: vm start R7 

@@ -206,7 +206,7 @@ class GNS_project:
     def config_all(self) -> None:
         self.project.get_nodes()
         for router in self.backbone_routers + self.client_routers:
-            Config.generate_config(router, self.get_config_path(router.rid))
+            Config.generate_config(router, self.get_config_path(router.rid), self.backbone_routers)
 
     def get_router(self, rid):
         for r in self.backbone_routers + self.client_routers:
@@ -220,9 +220,12 @@ class GNS_project:
 
 if __name__ == "__main__":
     project = GNS_project("http://localhost:3080", "autoconf2")
+
     # project.create_backbone("archi/backbone.json")
     # project.create_backbone_auto(1)
+
     project.load_config('archi/backbone.json', 'backbone')
     project.load_config('archi/client1.json', 'client')
     project.load_config('archi/client2.json', 'client')
+
     project.config_all()

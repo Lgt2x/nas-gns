@@ -3,7 +3,7 @@ from utils.components import Router
 
 class Config:
     @staticmethod
-    def generate_config(router: Router, filename: str):
+    def generate_config(router: Router, filename: str, bb_routers: [Router]):
         """
         Stateless function writing a router config to a file
         :param router: Router object
@@ -30,7 +30,7 @@ class Config:
                    "ip tcp synwait-time 5\n\n")
 
         # Configure loopback adress
-        if type != "client":
+        if router.type != "client":
             file.write(f"interface Loopback0\n"
                        f"ip address {router.rid}.{router.rid}.{router.rid}.{router.rid} 255.255.255.255\n"
                        "ip ospf 1 area 1\n\n")
@@ -47,53 +47,58 @@ class Config:
                        f" ip address 10.10.{min(neighbor, router.rid)}{max(neighbor, router.rid)}."
                        f"{router.rid} 255.255.255.0\n")
 
-            file.write("ip ospf 1 area 1\n")
+            if router.type != "client":
+                file.write("ip ospf 1 area 1\n")
+
             file.write(" negotiation auto\n")
 
-            if type != "client":
+            if router.type != "client":
                 file.write(" mpls ip\n")
 
             file.write("\n")
             port += 1
 
-        if type != "core":
+        if router.type != "core":
             # Client routers linked
             for i in range(len(router.exteriors)):
                 file.write(f"interface GigabitEthernet{port}/0\n"
                            f" ip address 10.10.{min(router.exteriors[i].rid, router.rid)}{max(router.exteriors[i].rid, router.rid)}.{router.rid} "
                            f"255.255.255.0\n")
 
-                if type != "client":
+                if router.type != "client":
                     file.write("ip ospf 1 area 1\n")
 
                 file.write(" negotiation auto\n\n")
                 port += 1
 
         # Internal interfaces
-        if type == "client":
+        if router.type == "client":
             file.write(f"interface GigabitEthernet{port}/0\n"
                        f" ip address 10.10.10{router.rid}.{router.rid} 255.255.255.0\n")
             file.write(" negotiation auto\n\n")
             port += 1
 
-        if type == "edge" or type == "core":
+        if router.type == "edge" or router.type == "core":
             file.write("router ospf 1\n"
                        f" router-id {router.rid}.{router.rid}.{router.rid}.{router.rid}\n\n")
-        if type == "edge":
+        if router.type == "edge":
             file.write(f" passive-interface GigabitEthernet{port - 1}/0\n\n")
 
-        if type != "core":
-            # Config BGP
+        # Config BGP
+        if router.type != "core":
+
             file.write(f"router bgp {router.AS}\n"
                        f"bgp router-id {router.rid}.{router.rid}.{router.rid}.{router.rid}\n"
                        "bgp log-neighbor-changes\n\n")
 
-            # BGP neighbor : loopback adress
-            for neighbor in router.neighbors:
-                file.write(f"neighbor {neighbor}.{neighbor}.{neighbor}.{neighbor} "
-                           f"remote-as {router.AS}\n")
-                file.write(f"neighbor {neighbor}.{neighbor}.{neighbor}.{neighbor} "
-                           f"update-source Loopback0\n\n")
+            # BGP neighbor inside AS : all edge routers
+            if router.type == "edge":
+                for neighbor in bb_routers:
+                    if neighbor.type == 'edge':
+                        file.write(f"neighbor {neighbor.rid}.{neighbor.rid}.{neighbor.rid}.{neighbor.rid} "
+                                   f"remote-as {router.AS}\n")
+                        file.write(f"neighbor {neighbor.rid}.{neighbor.rid}.{neighbor.rid}.{neighbor.rid} "
+                                   f"update-source Loopback0\n\n")
 
             # BGP with client on their interface
             for i in range(len(router.exteriors)):
@@ -104,7 +109,7 @@ class Config:
 
             file.write("\naddress-family ipv4\n")
 
-            if type == "client":
+            if router.type == "client":
                 file.write(f"network 10.10.10{router.rid}.0 mask 255.255.255.0\n")
 
             for neighbor in router.neighbors:
@@ -119,7 +124,7 @@ class Config:
                    "no ip http secure-server\n\n")
 
         # Force loopback adress
-        if type != "client":
+        if router.type != "client":
             file.write("\nmpls ldp router-id Loopback0 force\n\n")
 
         file.write("control-plane\n"

@@ -57,3 +57,6 @@ Jan 15 17:20:46.216 HYPERVISOR: exec_cmd: vm get_status R5
 Jan 15 17:20:46.217 HYPERVISOR: exec_cmd: vm stop R5 
 Jan 15 17:20:46.371 VM: VM R5 shutdown.
 Jan 15 17:20:46.372 HYPERVISOR: exec_cmd: vm extract_config R5 
+Jan 15 17:22:18.955 HYPERVISOR: exec_cmd: vm get_status R5 
+Jan 15 17:22:18.955 HYPERVISOR: exec_cmd: vm set_config R5 configs/i5_startup-config.cfg 
+Jan 15 17:22:18.956 HYPERVISOR: exec_cmd: vm start R5 

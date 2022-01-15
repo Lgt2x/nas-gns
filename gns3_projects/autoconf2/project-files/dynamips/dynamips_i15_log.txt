@@ -59,3 +59,6 @@ Jan 15 17:20:46.261 HYPERVISOR: exec_cmd: vm get_status R6
 Jan 15 17:20:46.261 HYPERVISOR: exec_cmd: vm stop R6 
 Jan 15 17:20:46.421 VM: VM R6 shutdown.
 Jan 15 17:20:46.422 HYPERVISOR: exec_cmd: vm extract_config R6 
+Jan 15 17:22:18.964 HYPERVISOR: exec_cmd: vm get_status R6 
+Jan 15 17:22:18.965 HYPERVISOR: exec_cmd: vm set_config R6 configs/i6_startup-config.cfg 
+Jan 15 17:22:18.965 HYPERVISOR: exec_cmd: vm start R6 

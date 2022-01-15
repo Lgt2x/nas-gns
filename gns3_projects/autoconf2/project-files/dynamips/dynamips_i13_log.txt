@@ -54,3 +54,6 @@ Jan 15 17:20:46.200 HYPERVISOR: exec_cmd: vm get_status R4
 Jan 15 17:20:46.200 HYPERVISOR: exec_cmd: vm stop R4 
 Jan 15 17:20:46.378 VM: VM R4 shutdown.
 Jan 15 17:20:46.380 HYPERVISOR: exec_cmd: vm extract_config R4 
+Jan 15 17:22:18.745 HYPERVISOR: exec_cmd: vm get_status R4 
+Jan 15 17:22:18.745 HYPERVISOR: exec_cmd: vm set_config R4 configs/i4_startup-config.cfg 
+Jan 15 17:22:18.745 HYPERVISOR: exec_cmd: vm start R4 

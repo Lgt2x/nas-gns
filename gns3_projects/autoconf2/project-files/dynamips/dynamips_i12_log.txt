@@ -58,3 +58,6 @@ Jan 15 17:20:46.098 HYPERVISOR: exec_cmd: vm get_status R3
 Jan 15 17:20:46.099 HYPERVISOR: exec_cmd: vm stop R3 
 Jan 15 17:20:46.255 VM: VM R3 shutdown.
 Jan 15 17:20:46.256 HYPERVISOR: exec_cmd: vm extract_config R3 
+Jan 15 17:22:18.652 HYPERVISOR: exec_cmd: vm get_status R3 
+Jan 15 17:22:18.653 HYPERVISOR: exec_cmd: vm set_config R3 configs/i3_startup-config.cfg 
+Jan 15 17:22:18.653 HYPERVISOR: exec_cmd: vm start R3 
