@@ -6,6 +6,7 @@ class Config:
     def generate_config(router: Router, filename: str, bb_routers: [Router]):
         """
         Stateless function writing a router config to a file
+        :param bb_routers: list of backbone routers
         :param router: Router object
         :param filename: file path to write to
         """
@@ -64,7 +65,8 @@ class Config:
             # Client routers linked
             for i in range(len(router.exteriors)):
                 file.write(f"interface GigabitEthernet{port}/0\n"
-                           f" ip address 10.10.{min(router.exteriors[i].rid, router.rid)}{max(router.exteriors[i].rid, router.rid)}.{router.rid} "
+                           f" ip address 10.10.{min(router.exteriors[i].rid, router.rid)}"
+                           f"{max(router.exteriors[i].rid, router.rid)}.{router.rid} "
                            f"255.255.255.0\n")
 
                 if router.type != "client":
@@ -118,7 +120,8 @@ class Config:
                 file.write(f"neighbor {neighbor}.{neighbor}.{neighbor}.{neighbor} activate\n")
             for exterior in router.exteriors:
                 file.write(
-                    f"neighbor 10.10.{min(exterior.rid, router.rid)}{max(exterior.rid, router.rid)}.{exterior.rid} activate\n")
+                    f"neighbor 10.10.{min(exterior.rid, router.rid)}"
+                    f"{max(exterior.rid, router.rid)}.{exterior.rid} activate\n")
             file.write("exit-address-family\n\n")
 
         file.write("ip forward-protocol nd\n"

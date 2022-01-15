@@ -162,21 +162,21 @@ class GNS_project:
 
         print(f"Linked {node1}:{interfaces[0]}, {node2}:{interfaces[1]}")
 
-    def create_node(self, type, name):
+    def create_node(self, node_type, name):
         node = gns3fy.Node(
             project_id=self.project_id,
             connector=self.server,
             name=name,
-            template=type
+            template=node_type
         )
         node.create()
         self.project.get_nodes()
 
-    def load_config(self, file, type):
+    def load_config(self, file, config_type):
         with open(file, 'r') as config_file:
             config = json.load(config_file)
 
-            if type == "backbone":
+            if config_type == "backbone":
                 for router in config["routers"]:
                     neigh = []
                     for link in config["links"]:
@@ -191,7 +191,7 @@ class GNS_project:
                                                         neighbors=neigh,
                                                         exteriors=[],
                                                         peers=[]))
-            elif type == "client":
+            elif config_type == "client":
                 r = Router(AS=config["AS"],
                            rid=config["rid"],
                            type="client",
@@ -221,13 +221,13 @@ class GNS_project:
 
 
 if __name__ == "__main__":
-    project = GNS_project("http://localhost:3080", "autoconf2")
+    gns_project = GNS_project("http://localhost:3080", "autoconf2")
 
     # project.create_backbone("archi/backbone.json")
     # project.create_backbone_auto(1)
 
-    project.load_config('archi/backbone.json', 'backbone')
-    project.load_config('archi/client1.json', 'client')
-    project.load_config('archi/client2.json', 'client')
+    gns_project.load_config('archi/backbone.json', 'backbone')
+    gns_project.load_config('archi/client1.json', 'client')
+    gns_project.load_config('archi/client2.json', 'client')
 
-    project.config_all()
+    gns_project.config_all()
