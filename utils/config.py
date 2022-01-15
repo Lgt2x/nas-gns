@@ -25,8 +25,10 @@ class Config:
                    "no ip domain lookup\n"
                    "no ipv6 cef\n\n")
 
-        file.write(f"mpls label protocol ldp\n"
-                   "multilink bundle-name authenticated\n"
+        if type != "client":
+            file.write(f"mpls label protocol ldp\n")
+
+        file.write("multilink bundle-name authenticated\n"
                    "ip tcp synwait-time 5\n\n")
 
         # Configure loopback adress

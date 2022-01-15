@@ -192,14 +192,16 @@ class GNS_project:
                                                         exteriors=[],
                                                         peers=[]))
             elif type == "client":
-                self.client_routers.append(Router(AS=config["AS"],
-                                                  rid=config["rid"],
-                                                  type="client",
-                                                  neighbors=[],
-                                                  exteriors=[self.get_router(r) for r in config["peers"]],
-                                                  peers=config["peers"]))
-                for router in self.backbone_routers:  # Update backbone exterior relatioins
-                    router.exteriors += [r for r in self.client_routers if router.rid in r.peers]
+                r = Router(AS=config["AS"],
+                           rid=config["rid"],
+                           type="client",
+                           neighbors=[],
+                           exteriors=[self.get_router(r) for r in config["peers"]],
+                           peers=config["peers"])
+                self.client_routers.append(r)
+                for router in self.backbone_routers:  # Update backbone exterior relations
+                    if router.rid in config["peers"]:
+                        router.exteriors.append(r)
             else:
                 raise TypeError
 
