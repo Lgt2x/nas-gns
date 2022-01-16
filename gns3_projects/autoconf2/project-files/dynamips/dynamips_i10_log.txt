@@ -47,3 +47,9 @@ Jan 16 14:31:18.785 HYPERVISOR: exec_cmd: vm get_status R8
 Jan 16 14:31:22.312 HYPERVISOR: exec_cmd: nio create_udp udp-9c7ca54b-72ea-48a7-abb5-9837a7a3e980 10086 127.0.0.1 10087 
 Jan 16 14:31:22.313 HYPERVISOR: exec_cmd: vm slot_add_nio_binding R8 2 0 udp-9c7ca54b-72ea-48a7-abb5-9837a7a3e980 
 Jan 16 14:31:22.314 HYPERVISOR: exec_cmd: vm get_status R8 
+Jan 16 14:57:54.620 HYPERVISOR: exec_cmd: vm set_ghost_status R8 2 
+Jan 16 14:57:54.620 HYPERVISOR: exec_cmd: vm set_ghost_file R8 /home/louis/Documents/JetBrains/PycharmProjects/nas-gns/gns3_projects/autoconf2/project-files/dynamips/c7200-advipservicesk9-mz.152-4.S5.image-512.ghost 
+Jan 16 14:57:54.621 HYPERVISOR: exec_cmd: vm get_status R8 
+Jan 16 14:57:54.621 HYPERVISOR: exec_cmd: vm set_config R8 configs/i8_startup-config.cfg 
+Jan 16 14:57:54.621 HYPERVISOR: exec_cmd: vm start R8 
+Jan 16 14:58:24.863 HYPERVISOR: exec_cmd: vm extract_config R8 

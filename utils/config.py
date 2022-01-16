@@ -116,9 +116,11 @@ class Config:
             if router.type == "client":
                 file.write(f"network 10.10.10{router.rid}.0 mask 255.255.255.0\n")
 
-            for neighbor in router.neighbors:
-                file.write(f"neighbor {neighbor}.{neighbor}.{neighbor}.{neighbor} activate\n")
-                file.write(f"neighbor {neighbor}.{neighbor}.{neighbor}.{neighbor} send-community\n")
+            if router.type == "edge":
+                for neighbor in bb_routers:
+                    if neighbor.type == 'edge':
+                        file.write(f"neighbor {neighbor.rid}.{neighbor.rid}.{neighbor.rid}.{neighbor.rid} activate\n")
+                        file.write(f"neighbor {neighbor.rid}.{neighbor.rid}.{neighbor.rid}.{neighbor.rid} send-community\n")
             for exterior in router.exteriors:
                 file.write(
                     f"neighbor 10.10.{min(exterior.rid, router.rid)}"
