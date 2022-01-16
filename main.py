@@ -197,7 +197,8 @@ class GNS_project:
                            type="client",
                            neighbors=[],
                            exteriors=[self.get_router(r) for r in config["peers"]],
-                           peers=config["peers"])
+                           peers=config["peers"],
+                           client_type=config["type"])
                 self.client_routers.append(r)
                 for router in self.backbone_routers:  # Update backbone exterior relations
                     if router.rid in config["peers"]:

@@ -1,0 +1,6 @@
+{
+  "type": "provider",
+  "rid": 8,
+  "peers": [2],
+  "AS": 6
+}

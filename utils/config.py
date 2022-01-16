@@ -118,15 +118,37 @@ class Config:
 
             for neighbor in router.neighbors:
                 file.write(f"neighbor {neighbor}.{neighbor}.{neighbor}.{neighbor} activate\n")
+                file.write(f"neighbor {neighbor}.{neighbor}.{neighbor}.{neighbor} send-community\n")
             for exterior in router.exteriors:
                 file.write(
                     f"neighbor 10.10.{min(exterior.rid, router.rid)}"
                     f"{max(exterior.rid, router.rid)}.{exterior.rid} activate\n")
+                if exterior.type == "client":
+                    if exterior.client_type == "client":
+                        file.write(f"neighbor 10.10.{min(exterior.rid, router.rid)}"
+                                   f"{max(exterior.rid, router.rid)}.{exterior.rid} route-map client-in in\n")
+                    else:  # Peer or provider : filter out
+                        file.write(
+                            f"neighbor 10.10.{min(exterior.rid, router.rid)}"
+                            f"{max(exterior.rid, router.rid)}.{exterior.rid} route-map filter-out out\n")
             file.write("exit-address-family\n\n")
+
+        if router.type == "edge":
+            file.write(f"ip community-list 1 permit {router.AS}:1\n")
 
         file.write("ip forward-protocol nd\n"
                    "no ip http server\n"
                    "no ip http secure-server\n\n")
+
+        if router.type == "edge":
+            for exterior in router.exteriors:
+                if exterior.type == "client" and exterior.client_type == "client":
+                    file.write(f"route-map client-in permit 10\n"
+                               f"set community {router.AS}:1\n")
+                if exterior.type == "client" and (
+                        exterior.client_type == "peering" or exterior.client_type == "provider"):
+                    file.write(f"route-map filter-out permit 10\n"
+                               "match community 1\n")
 
         # Force loopback adress
         if router.type != "client":

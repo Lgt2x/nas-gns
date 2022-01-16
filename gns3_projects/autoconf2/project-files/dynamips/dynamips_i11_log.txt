@@ -1,62 +1,12 @@
-Jan 15 17:15:05.095 HYPERVISOR: Release 0.2.21-x86/Linux (tag 2019071212)
-Jan 15 17:15:05.096 HYPERVISOR: Started on TCP port = 48317.
-Jan 15 17:15:05.105 HYPERVISOR: exec_cmd: hypervisor version 
-Jan 15 17:15:05.105 HYPERVISOR: exec_cmd: hypervisor working_dir /home/louis/Documents/JetBrains/PycharmProjects/nas-gns/gns3_projects/autoconf2/project-files/dynamips 
-Jan 15 17:15:05.105 GENERAL: working_dir=/home/louis/Documents/JetBrains/PycharmProjects/nas-gns/gns3_projects/autoconf2/project-files/dynamips
-Jan 15 17:15:05.106 HYPERVISOR: exec_cmd: hypervisor working_dir /home/louis/Documents/JetBrains/PycharmProjects/nas-gns/gns3_projects/autoconf2/project-files/dynamips/13d6db27-93f2-4052-a3c6-c028d1398d69 
-Jan 15 17:15:05.106 GENERAL: working_dir=/home/louis/Documents/JetBrains/PycharmProjects/nas-gns/gns3_projects/autoconf2/project-files/dynamips/13d6db27-93f2-4052-a3c6-c028d1398d69
-Jan 15 17:15:05.106 HYPERVISOR: exec_cmd: vm create R2 2 c7200 
-Jan 15 17:15:05.106 VM: VM R2 created.
-Jan 15 17:15:05.106 HYPERVISOR: exec_cmd: vm set_con_tcp_port R2 5001 
-Jan 15 17:15:05.106 HYPERVISOR: exec_cmd: c7200 get_mac_addr R2 
-Jan 15 17:15:05.106 HYPERVISOR: exec_cmd: vm get_status R2 
-Jan 15 17:15:05.107 HYPERVISOR: exec_cmd: vm slot_add_binding R2 0 0 C7200-IO-FE 
-Jan 15 17:15:05.107 HYPERVISOR: exec_cmd: vm set_ios R2 /home/louis/GNS3/images/IOS/c7200-advipservicesk9-mz.152-4.S5.image 
-Jan 15 17:15:05.108 HYPERVISOR: exec_cmd: vm get_status R2 
-Jan 15 17:15:05.108 HYPERVISOR: exec_cmd: vm set_idle_pc R2 0x6318687c 
-Jan 15 17:15:05.108 HYPERVISOR: exec_cmd: vm set_ram R2 512 
-Jan 15 17:15:05.108 HYPERVISOR: exec_cmd: vm set_nvram R2 512 
-Jan 15 17:15:05.108 HYPERVISOR: exec_cmd: vm set_disk0 R2 0 
-Jan 15 17:15:05.109 HYPERVISOR: exec_cmd: vm get_status R2 
-Jan 15 17:15:05.109 HYPERVISOR: exec_cmd: vm slot_add_binding R2 1 0 PA-GE 
-Jan 15 17:15:05.109 HYPERVISOR: exec_cmd: vm get_status R2 
-Jan 15 17:15:05.109 HYPERVISOR: exec_cmd: vm slot_add_binding R2 2 0 PA-GE 
-Jan 15 17:15:05.110 HYPERVISOR: exec_cmd: vm get_status R2 
-Jan 15 17:15:05.110 HYPERVISOR: exec_cmd: vm slot_add_binding R2 3 0 PA-GE 
-Jan 15 17:15:05.110 HYPERVISOR: exec_cmd: vm get_status R2 
-Jan 15 17:15:05.110 HYPERVISOR: exec_cmd: vm slot_add_binding R2 4 0 PA-GE 
-Jan 15 17:15:05.110 HYPERVISOR: exec_cmd: vm get_status R2 
-Jan 15 17:15:05.110 HYPERVISOR: exec_cmd: vm slot_add_binding R2 5 0 PA-GE 
-Jan 15 17:15:05.164 HYPERVISOR: exec_cmd: vm set_ios R2 /home/louis/GNS3/images/IOS/c7200-advipservicesk9-mz.152-4.S5.image 
-Jan 15 17:15:14.309 HYPERVISOR: exec_cmd: vm set_ios R2 /home/louis/GNS3/images/IOS/c7200-advipservicesk9-mz.152-4.S5.image 
-Jan 15 17:15:16.333 HYPERVISOR: exec_cmd: vm set_ios R2 /home/louis/GNS3/images/IOS/c7200-advipservicesk9-mz.152-4.S5.image 
-Jan 15 17:15:29.596 HYPERVISOR: exec_cmd: nio create_udp udp-8691bd07-89b3-42a6-95c1-8aaed6b33838 10004 127.0.0.1 10005 
-Jan 15 17:15:29.811 HYPERVISOR: exec_cmd: vm slot_add_nio_binding R2 1 0 udp-8691bd07-89b3-42a6-95c1-8aaed6b33838 
-Jan 15 17:15:29.812 HYPERVISOR: exec_cmd: vm get_status R2 
-Jan 15 17:16:33.163 HYPERVISOR: exec_cmd: nio create_udp udp-06907e83-cbef-47ec-9491-479c867ad936 10036 127.0.0.1 10037 
-Jan 15 17:16:33.164 HYPERVISOR: exec_cmd: vm slot_add_nio_binding R2 2 0 udp-06907e83-cbef-47ec-9491-479c867ad936 
-Jan 15 17:16:33.164 HYPERVISOR: exec_cmd: vm get_status R2 
-Jan 15 17:16:41.046 HYPERVISOR: exec_cmd: nio create_udp udp-1577c353-3471-43a0-aaec-bbc51e5d3470 10042 127.0.0.1 10043 
-Jan 15 17:16:41.047 HYPERVISOR: exec_cmd: vm slot_add_nio_binding R2 3 0 udp-1577c353-3471-43a0-aaec-bbc51e5d3470 
-Jan 15 17:16:41.047 HYPERVISOR: exec_cmd: vm get_status R2 
-Jan 15 17:16:44.411 HYPERVISOR: exec_cmd: nio create_udp udp-2fd38154-a295-4c5c-b4c3-dc900729bc07 10048 127.0.0.1 10049 
-Jan 15 17:16:44.413 HYPERVISOR: exec_cmd: vm slot_add_nio_binding R2 4 0 udp-2fd38154-a295-4c5c-b4c3-dc900729bc07 
-Jan 15 17:16:44.413 HYPERVISOR: exec_cmd: vm get_status R2 
-Jan 15 17:17:02.108 HYPERVISOR: exec_cmd: vm get_status R2 
-Jan 15 17:17:02.109 HYPERVISOR: exec_cmd: vm set_config R2 configs/i2_startup-config.cfg 
-Jan 15 17:17:02.110 HYPERVISOR: exec_cmd: vm start R2 
-Jan 15 17:17:18.306 HYPERVISOR: exec_cmd: vm get_status R2 
-Jan 15 17:17:18.306 HYPERVISOR: exec_cmd: vm stop R2 
-Jan 15 17:17:18.471 VM: VM R2 shutdown.
-Jan 15 17:17:18.472 HYPERVISOR: exec_cmd: vm extract_config R2 
-Jan 15 17:18:06.568 HYPERVISOR: exec_cmd: vm get_status R2 
-Jan 15 17:18:06.569 HYPERVISOR: exec_cmd: vm set_config R2 configs/i2_startup-config.cfg 
-Jan 15 17:18:06.569 HYPERVISOR: exec_cmd: vm start R2 
-Jan 15 17:18:36.877 HYPERVISOR: exec_cmd: vm extract_config R2 
-Jan 15 17:20:45.928 HYPERVISOR: exec_cmd: vm get_status R2 
-Jan 15 17:20:45.928 HYPERVISOR: exec_cmd: vm stop R2 
-Jan 15 17:20:46.092 VM: VM R2 shutdown.
-Jan 15 17:20:46.093 HYPERVISOR: exec_cmd: vm extract_config R2 
-Jan 15 17:22:18.640 HYPERVISOR: exec_cmd: vm get_status R2 
-Jan 15 17:22:18.641 HYPERVISOR: exec_cmd: vm set_config R2 configs/i2_startup-config.cfg 
-Jan 15 17:22:18.641 HYPERVISOR: exec_cmd: vm start R2 
+Jan 16 14:31:06.721 HYPERVISOR: Release 0.2.21-x86/Linux (tag 2019071212)
+Jan 16 14:31:06.721 HYPERVISOR: Started on TCP port = 39321.
+Jan 16 14:31:06.730 HYPERVISOR: exec_cmd: hypervisor version 
+Jan 16 14:31:06.731 HYPERVISOR: exec_cmd: hypervisor working_dir /home/louis/Documents/JetBrains/PycharmProjects/nas-gns/gns3_projects/autoconf2/project-files/dynamips 
+Jan 16 14:31:06.731 GENERAL: working_dir=/home/louis/Documents/JetBrains/PycharmProjects/nas-gns/gns3_projects/autoconf2/project-files/dynamips
+Jan 16 14:31:06.731 HYPERVISOR: exec_cmd: ethsw create Switch3 
+Jan 16 14:31:22.322 HYPERVISOR: exec_cmd: nio create_udp udp-c57e8c76-ec1b-487b-a979-5131a0141686 10085 127.0.0.1 10084 
+Jan 16 14:31:22.322 HYPERVISOR: exec_cmd: ethsw add_nio Switch3 udp-c57e8c76-ec1b-487b-a979-5131a0141686 
+Jan 16 14:31:22.330 HYPERVISOR: exec_cmd: ethsw set_access_port Switch3 udp-c57e8c76-ec1b-487b-a979-5131a0141686 1 
+Jan 16 14:31:31.064 HYPERVISOR: exec_cmd: nio create_udp udp-2e1283fe-eb41-4955-8799-49438f890f2f 10088 127.0.0.1 10089 
+Jan 16 14:31:31.064 HYPERVISOR: exec_cmd: ethsw add_nio Switch3 udp-2e1283fe-eb41-4955-8799-49438f890f2f 
+Jan 16 14:31:31.078 HYPERVISOR: exec_cmd: ethsw set_access_port Switch3 udp-2e1283fe-eb41-4955-8799-49438f890f2f 1 

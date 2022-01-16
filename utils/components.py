@@ -82,3 +82,4 @@ class Router:
     neighbors: [int]  # Inside AS neighbors
     exteriors: ['Router']  # Different AS neighbors
     peers: [int]
+    client_type: str = "client"
