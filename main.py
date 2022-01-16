@@ -230,5 +230,6 @@ if __name__ == "__main__":
     gns_project.load_config('archi/backbone.json', 'backbone')
     gns_project.load_config('archi/client1.json', 'client')
     gns_project.load_config('archi/client2.json', 'client')
+    gns_project.load_config('archi/client3.json', 'client')
 
     gns_project.config_all()
