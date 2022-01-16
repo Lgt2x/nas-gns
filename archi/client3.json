@@ -1,6 +1,6 @@
 {
   "type": "provider",
   "rid": 8,
-  "peers": [2],
+  "peers": [4],
   "AS": 6
 }
