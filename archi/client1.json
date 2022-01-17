@@ -2,5 +2,6 @@
   "type": "client",
   "rid": 6,
   "peers": [1,3],
-  "AS": 5
+  "AS": 5,
+  "PC": 1
 }
