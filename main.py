@@ -6,8 +6,8 @@ from utils.components import GNode, Router
 from utils.config import Config
 
 
-class GNS_project:
-    def __init__(self, url, project):
+class GNSProject:
+    def __init__(self, url: str, project: str):
         self.gns_url = url
         self.project_name = project
         self.backbone_routers = []
@@ -31,7 +31,7 @@ class GNS_project:
         self.project_id = self.project.project_id
         self.templates = self.server.get_templates()
 
-    def create_backbone(self, file):
+    def create_backbone(self, file: str):
         """
         Create a backbone router scheme given a decription file
         """
@@ -63,7 +63,7 @@ class GNS_project:
 
         config_file.close()
 
-    def create_backbone_auto(self, core_routers=2):
+    def create_backbone_auto(self, core_routers: int = 2):
         """
         Create a backbone router scheme automatically
         """
@@ -112,9 +112,20 @@ class GNS_project:
 
         print("---- Backbone setup completed\n")
 
-    def create_client(self, name, router=True, pc=2, switch=True, AS=False, redundancy=False):
+    def create_client(self, name, router: bool = True, pc: int = 2, switch: bool = True, AS: bool = False,
+                      redundancy: bool = False):
+        """
+        Create a client on GNS given its characteristics
+        :param name: Name of the client
+        :param router: True if client has a router
+        :param pc: Number of PCs linked to the switch
+        :param switch: True if using a switch
+        :param AS: True if using its own AS
+        :param redundancy: True if linked multiple times to backbone
+        """
         print(
-            f"Creating client `{name}` {'with' if router else 'without'} router, {pc} PC, {'with' if switch else 'without'} switch, "
+            f"Creating client `{name}` {'with' if router else 'without'} router, {pc} PC,"
+            f"{'with' if switch else 'without'} switch, "
             f"{'with' if AS else 'without'} its own AS, {'with' if redundancy else 'without'} redundancy")
 
         # Select our edge router
@@ -140,7 +151,7 @@ class GNS_project:
             GNode(self.project, f"{name}PC{i}").node.update(x=edge.node.x - 450,
                                                             y=edge.node.y + i * 80 - (pc // 2) * 80)
 
-    def create_link(self, node1, node2):
+    def create_link(self, node1: str, node2: str) -> None:
         """
         Create a link between 2 nodes
         """
@@ -162,7 +173,12 @@ class GNS_project:
 
         print(f"Linked {node1}:{interfaces[0]}, {node2}:{interfaces[1]}")
 
-    def create_node(self, node_type, name):
+    def create_node(self, node_type: str, name: str) -> None:
+        """
+        Create a node given its GNS3 template type and name
+        :param node_type:
+        :param name:
+        """
         node = gns3fy.Node(
             project_id=self.project_id,
             connector=self.server,
@@ -172,7 +188,12 @@ class GNS_project:
         node.create()
         self.project.get_nodes()
 
-    def load_config(self, file, config_type):
+    def load_config(self, file: str, config_type: str) -> None:
+        """
+        Load a json config file into memory
+        :param file: path to config file
+        :param config_type: "backbone" | "client
+        """
         with open(file, 'r') as config_file:
             config = json.load(config_file)
 
@@ -207,25 +228,33 @@ class GNS_project:
                 raise TypeError
 
     def config_all(self) -> None:
-        self.project.get_nodes()
+        """
+        Configure all routers as defined in json description file loaded so far
+        """
+        self.project.get_nodes()  # Update nodes
         for router in self.backbone_routers + self.client_routers:
-            Config.generate_config(router, self.get_config_path(router.rid), self.backbone_routers)
+            Config.generate_config_router(router, self.get_config_path(router.rid), self.backbone_routers)
 
-    def get_router(self, rid):
+    def get_router(self, rid: int) -> Router:
+        """
+        Return the Router object associated with a given rid
+        """
         for r in self.backbone_routers + self.client_routers:
             if r.rid == rid:
                 return r
 
-    def get_config_path(self, node):
-        rid = self.project.get_node(f'R{node}').node_id
-        return f"{self.project.path}/project-files/dynamips/{rid}/configs/i{node}_startup-config.cfg"
+    def get_config_path(self, rid: int) -> str:
+        """
+        Returns the path of the config file for a given node
+        """
+        router_uuid = self.project.get_node(f'R{rid}').node_id
+        return f"{self.project.path}/project-files/dynamips/{router_uuid}/configs/i{rid}_startup-config.cfg"
 
 
 if __name__ == "__main__":
-    gns_project = GNS_project("http://localhost:3080", "autoconf2")
+    gns_project = GNSProject("http://localhost:3080", "autoconf2")
 
     # project.create_backbone("archi/backbone.json")
-    # project.create_backbone_auto(1)
 
     gns_project.load_config('archi/backbone.json', 'backbone')
     gns_project.load_config('archi/client1.json', 'client')
