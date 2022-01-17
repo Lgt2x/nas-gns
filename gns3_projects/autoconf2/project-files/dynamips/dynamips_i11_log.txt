@@ -15,3 +15,5 @@ Jan 17 09:38:21.120 HYPERVISOR: exec_cmd: ethsw set_access_port Switch81 udp-3d4
 Jan 17 09:38:21.120 HYPERVISOR: exec_cmd: ethsw set_access_port Switch81 udp-793beb85-7ab0-4e2a-8ad1-cd1e57228ce8 1 
 Jan 17 09:38:21.186 HYPERVISOR: exec_cmd: ethsw set_access_port Switch81 udp-3d4292e9-2d5d-43da-83b4-e7a001237408 1 
 Jan 17 09:38:21.186 HYPERVISOR: exec_cmd: ethsw set_access_port Switch81 udp-793beb85-7ab0-4e2a-8ad1-cd1e57228ce8 1 
+Jan 17 13:04:12.057 HYPERVISOR: exec_cmd: ethsw set_access_port Switch81 udp-3d4292e9-2d5d-43da-83b4-e7a001237408 1 
+Jan 17 13:04:12.058 HYPERVISOR: exec_cmd: ethsw set_access_port Switch81 udp-793beb85-7ab0-4e2a-8ad1-cd1e57228ce8 1 

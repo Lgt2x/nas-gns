@@ -104,7 +104,7 @@ class Config:
 
             # BGP neighbor inside AS : all other edge routers
             if router.type == "edge":
-                for neighbor in bb_routers: #  Iterate over backbone routers
+                for neighbor in bb_routers:  # Iterate over backbone routers
                     if neighbor.type == 'edge':
                         file.write(f"neighbor {neighbor.rid}.{neighbor.rid}.{neighbor.rid}.{neighbor.rid} "
                                    f"remote-as {router.AS}\n")
@@ -184,4 +184,13 @@ class Config:
                    "login\n")
 
         file.write("end\n")
+        file.close()
+
+    @staticmethod
+    def generate_config_pc(filename: str, router: Router, pc_id: int) -> None:
+        file = open(filename, 'w')
+
+        file.write(f"set pcname PC{router.rid}{pc_id}\n"
+                   f"ip 10.10.10{router.rid}.{pc_id} 255.255.255.0 gateway 10.10.10{router.rid}.{router.rid}")
+
         file.close()

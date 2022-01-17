@@ -2,5 +2,6 @@
   "type": "provider",
   "rid": 8,
   "peers": [4],
-  "AS": 6
+  "AS": 6,
+  "PC": 1
 }

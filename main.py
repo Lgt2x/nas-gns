@@ -219,7 +219,8 @@ class GNSProject:
                            neighbors=[],
                            exteriors=[self.get_router(r) for r in config["peers"]],
                            peers=config["peers"],
-                           client_type=config["type"])
+                           client_type=config["type"],
+                           client_pc=config["PC"])
                 self.client_routers.append(r)
                 for router in self.backbone_routers:  # Update backbone exterior relations
                     if router.rid in config["peers"]:
@@ -235,6 +236,10 @@ class GNSProject:
         for router in self.backbone_routers + self.client_routers:
             Config.generate_config_router(router, self.get_config_path(router.rid), self.backbone_routers)
 
+        for client_router in self.client_routers:
+            for pc_id in range(1, client_router.client_pc+1):
+                Config.generate_config_pc(self.get_config_file_pc(pc_id, client_router.rid), client_router, pc_id)
+
     def get_router(self, rid: int) -> Router:
         """
         Return the Router object associated with a given rid
@@ -249,6 +254,10 @@ class GNSProject:
         """
         router_uuid = self.project.get_node(f'R{rid}').node_id
         return f"{self.project.path}/project-files/dynamips/{router_uuid}/configs/i{rid}_startup-config.cfg"
+
+    def get_config_file_pc(self, pc_id: int, rid: int) -> str:
+        pc_id = self.project.get_node(f'PC{rid}{pc_id}').node_id
+        return f"{self.project.path}/project-files/vpcs/{pc_id}/startup.vpc"
 
 
 if __name__ == "__main__":

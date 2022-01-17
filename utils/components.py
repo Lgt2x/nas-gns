@@ -83,3 +83,4 @@ class Router:
     exteriors: ['Router']  # Different AS neighbors
     peers: [int]
     client_type: str = "client"
+    client_pc: int = 0  # Number of client PCs
